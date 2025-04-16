@@ -1,0 +1,126 @@
+Để phân tích thiết kế hệ thống cho phần mềm Quản lý và theo dõi lịch tiêm chủng cho trẻ em, chúng ta sẽ xây dựng một kiến trúc hệ thống có thể dễ dàng mở rộng, dễ bảo trì và đáp ứng các yêu cầu về bảo mật, hiệu năng và khả năng xử lý các yêu cầu đa dạng từ người dùng. Dưới đây là chi tiết về phân quyền, các tính năng chính, cũng như thiết kế back-end sử dụng Spring Boot, MySQL, JWT.
+
+1. Phân quyền người dùng:
+Phần mềm sẽ có 4 loại người dùng với các quyền truy cập khác nhau:
+
+Guest: Khách tham quan, có thể xem thông tin cơ sở tiêm chủng, bảng giá và cẩm nang tiêm chủng nhưng không thể thực hiện các chức năng liên quan đến hồ sơ hay đặt lịch tiêm chủng.
+
+Customer: Người dùng có tài khoản, có thể cập nhật thông tin hồ sơ trẻ em, theo dõi lịch tiêm chủng, đặt lịch tiêm chủng, thanh toán và ghi nhận phản ứng sau tiêm. Có thể xem lịch tiêm chủng và được thông báo nhắc nhở mũi tiêm tiếp theo.
+
+Staff: Nhân viên của cơ sở tiêm chủng, có quyền ghi nhận kết quả tiêm chủng vào hồ sơ trẻ, theo dõi lịch tiêm và hỗ trợ khách hàng.
+
+Admin: Quản trị viên, có toàn quyền quản lý các thông tin của hệ thống: quản lý dịch vụ tiêm chủng, bảng giá, feedback, báo cáo, lịch sử của khách hàng, chính sách thanh toán, hủy đơn, quản lý nhân viên.
+
+2. Các tính năng chính của hệ thống:
+2.1. Trang chủ và thông tin cơ sở tiêm chủng:
+Hiển thị thông tin cơ sở tiêm chủng: Cung cấp thông tin giới thiệu về cơ sở, dịch vụ tiêm chủng, bảng giá, cẩm nang tiêm chủng, hướng dẫn tiêm.
+
+Thông tin liên hệ và địa chỉ.
+
+2.2. Quản lý hồ sơ và lịch sử tiêm chủng:
+Cập nhật thông tin hồ sơ trẻ em: Thông tin về trẻ em, quá trình tiêm chủng, tình trạng sức khỏe.
+
+Quá trình tiêm chủng: Quản lý các mũi tiêm theo độ tuổi của trẻ, các mũi tiêm cần thiết và theo dõi lịch tiêm chủng.
+
+2.3. Đặt lịch tiêm chủng:
+Chức năng đặt lịch tiêm: Khách hàng có thể lựa chọn dịch vụ tiêm lẻ, trọn gói hoặc tiêm cá thể hóa.
+
+Chọn dịch vụ và thanh toán: Khách hàng thanh toán cho dịch vụ tiêm chủng, có thể hủy lịch tiêm theo chính sách.
+
+2.4. Nhắc nhở lịch tiêm chủng:
+Thông báo nhắc nhở: Khách hàng nhận thông báo về các mũi tiêm tiếp theo qua email/sms.
+
+2.5. Phản ứng và feedback:
+Ghi nhận phản ứng sau tiêm: Khách hàng có thể ghi nhận phản ứng sau tiêm của trẻ nếu có.
+
+Quản lý feedback: Khách hàng có thể đánh giá cơ sở tiêm chủng.
+
+2.6. Quản lý dịch vụ và bảng giá:
+Quản lý dịch vụ tiêm chủng: Các dịch vụ tiêm chủng, bảng giá dịch vụ tiêm chủng.
+
+Chính sách thanh toán: Quản lý các chính sách thanh toán và hủy đơn tiêm chủng.
+
+2.7. Dashboard & Report:
+Báo cáo và thống kê: Báo cáo về lịch sử tiêm chủng, số lượng khách hàng, doanh thu.
+
+3. Kiến trúc hệ thống (Back-end):
+3.1. Kiến trúc ứng dụng:
+Sử dụng mô hình Spring Boot với Spring MVC cho phần back-end, MySQL cho cơ sở dữ liệu, và JWT (JSON Web Token) để xác thực người dùng.
+
+Spring Boot: Cung cấp các API RESTful cho ứng dụng front-end giao tiếp với back-end.
+
+JWT: Đảm bảo an toàn và bảo mật cho các API, dùng để xác thực người dùng và phân quyền.
+
+MySQL: Cơ sở dữ liệu lưu trữ thông tin khách hàng, lịch tiêm chủng, dịch vụ, phản hồi, thanh toán.
+
+3.2. Các mô-đun chính:
+User Management (Phân quyền và người dùng):
+
+User: Quản lý thông tin người dùng (Customer, Staff, Admin).
+
+Role: Phân quyền người dùng, xác định quyền truy cập dựa trên vai trò.
+
+JWT Authentication: Sử dụng JWT để xác thực người dùng và phân quyền.
+
+Authorization Filter: Kiểm tra quyền truy cập của người dùng với các API.
+
+Vaccine Management (Quản lý tiêm chủng):
+
+Vaccine: Quản lý thông tin về các mũi tiêm, lịch tiêm.
+
+Vaccine Schedule: Lịch tiêm chủng cho từng độ tuổi của trẻ.
+
+Vaccine Service: Cung cấp dịch vụ tiêm chủng, có thể tiêm lẻ, tiêm trọn gói.
+
+Appointment & Payment (Đặt lịch và thanh toán):
+
+Appointment: Quản lý việc đặt lịch tiêm chủng của khách hàng.
+
+Payment: Quản lý thông tin thanh toán cho dịch vụ tiêm chủng.
+
+Invoice: Quản lý hóa đơn thanh toán.
+
+Notification System (Hệ thống thông báo):
+
+Reminder: Gửi thông báo nhắc nhở cho khách hàng về các mũi tiêm tiếp theo.
+
+Reaction Notification: Gửi thông báo khi khách hàng ghi nhận phản ứng sau tiêm.
+
+Feedback & Rating (Phản hồi và đánh giá):
+
+Feedback: Quản lý các phản hồi và đánh giá từ khách hàng về cơ sở tiêm chủng.
+
+Admin Dashboard & Reporting (Bảng điều khiển và báo cáo):
+
+Dashboard: Cung cấp báo cáo về số lượng khách hàng, doanh thu, lịch tiêm.
+
+Statistics: Thống kê về các mũi tiêm, dịch vụ tiêm.
+
+3.3. Thiết kế Cơ sở dữ liệu (MySQL):
+User Table: Lưu thông tin người dùng (Customer, Staff, Admin).
+
+Role Table: Lưu các vai trò người dùng (Guest, Customer, Staff, Admin).
+
+Vaccine Table: Lưu thông tin về các loại vaccine.
+
+Appointment Table: Lưu thông tin về các lịch tiêm chủng của khách hàng.
+
+Payment Table: Quản lý thông tin thanh toán.
+
+Feedback Table: Lưu các phản hồi của khách hàng về dịch vụ tiêm chủng.
+
+4. Công nghệ sử dụng:
+Back-end: Spring Boot (RESTful API, Spring Security, JWT), Hibernate/JPA (ORM), MySQL (Cơ sở dữ liệu).
+
+Front-end: Có thể sử dụng Thymeleaf cho các trang web với Spring MVC hoặc RESTful API cho các giao diện đơn giản và SPA (Single Page Application) sử dụng JavaScript frameworks (Vue.js, React).
+
+Bảo mật: Sử dụng JWT cho xác thực và phân quyền, HTTPS để bảo mật giao tiếp.
+
+Thông báo: Sử dụng các hệ thống nhắn tin như email hoặc SMS (Twilio hoặc dịch vụ tương tự).
+
+5. Phân tích bảo mật và khả năng mở rộng:
+Bảo mật: Đảm bảo sử dụng HTTPS cho tất cả các API, bảo vệ các điểm cuối với JWT. Quản lý phân quyền người dùng chặt chẽ.
+
+Khả năng mở rộng: Thiết kế theo mô-đun, dễ dàng thay thế hoặc thêm vào các tính năng mới như tích hợp API từ các nhà cung cấp dịch vụ tiêm chủng bên ngoài.
+
+Với thiết kế này, hệ thống sẽ có khả năng quản lý hiệu quả việc tiêm chủng, từ việc đăng ký, theo dõi lịch tiêm, đến thanh toán và đánh giá, đồng thời đảm bảo các yếu tố bảo mật và tính linh hoạt trong việc mở rộng sau này.
