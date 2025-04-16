@@ -1,8 +1,6 @@
 package com.vaccine.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+// Lombok imports removed
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,9 +17,7 @@ import java.util.Set;
         @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
 })
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+// Lombok annotations removed
 public class User {
 
     @Id
@@ -66,6 +62,10 @@ public class User {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+    
+    public User() {
+        // Default constructor
+    }
 
     public User(String username, String email, String password, String fullName) {
         this.username = username;

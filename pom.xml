@@ -60,12 +60,14 @@
             <version>${jjwt.version}</version>
         </dependency>
 
-        <!-- Lombok for boilerplate reduction -->
-        <dependency>
+        <!-- Lombok temporarily removed due to compatibility issues -->
+        <!-- <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
             <optional>true</optional>
-        </dependency>
+        </dependency> -->
 
         <!-- Email Service -->
         <dependency>
@@ -100,12 +102,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
+                    <!-- No exclusions needed anymore -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <!-- Lombok annotation processors removed -->
                 </configuration>
             </plugin>
         </plugins>

@@ -40,7 +40,12 @@ public class AdminUserController {
 
     @GetMapping("/users/add")
     public String showAddUserForm(Model model) {
-        model.addAttribute("user", new User());
+        User user = new User();
+        user.setUsername("");
+        user.setEmail("");
+        user.setPassword("");
+        user.setFullName("");
+        model.addAttribute("user", user);
         model.addAttribute("roles", Role.ERole.values());
         return "admin/user-add";
     }

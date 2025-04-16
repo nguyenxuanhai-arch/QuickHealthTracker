@@ -37,7 +37,12 @@ public class AuthController {
 
     @GetMapping("/register")
     public String showRegisterPage(Model model) {
-        model.addAttribute("user", new User());
+        User user = new User();
+        user.setUsername("");
+        user.setEmail("");
+        user.setPassword("");
+        user.setFullName("");
+        model.addAttribute("user", user);
         return "register";
     }
 

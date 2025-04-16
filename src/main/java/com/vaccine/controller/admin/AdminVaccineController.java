@@ -2,9 +2,7 @@ package com.vaccine.controller.admin;
 
 import com.vaccine.dto.VaccineDTO;
 import com.vaccine.model.Vaccine;
-import com.vaccine.model.VaccineService;
 import com.vaccine.repository.VaccineServiceRepository;
-import com.vaccine.service.VaccineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +20,7 @@ import java.util.Set;
 public class AdminVaccineController {
 
     @Autowired
-    private VaccineService vaccineService;
+    private com.vaccine.service.VaccineService vaccineService;
     
     @Autowired
     private VaccineServiceRepository vaccineServiceRepository;

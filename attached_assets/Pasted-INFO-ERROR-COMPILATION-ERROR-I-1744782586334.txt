@@ -1,0 +1,303 @@
+INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[25,13] reference to VaccineService is ambiguous
+  both class com.vaccine.model.VaccineService in com.vaccine.model and interface com.vaccine.service.VaccineService in com.vaccine.service match     
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[7,1] a type with the same simple name is already defined by the single-type-import of com.vaccine.model.VaccineService
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[69,12] cannot find symbol
+  symbol:   class ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[78,12] cannot find symbol       
+  symbol:   class ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[177,39] cannot find symbol     
+  symbol:   method getFullName()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[178,42] cannot find symbol
+  symbol:   method getDateOfBirth()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[179,37] cannot find symbol
+  symbol:   method getGender()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[180,40] cannot find symbol
+  symbol:   method getBloodType()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[181,40] cannot find symbol
+  symbol:   method getAllergies()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[182,48] cannot find symbol
+  symbol:   method getMedicalConditions()
+  location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminUserController.java:[43,36] constructor User in class com.vaccine.model.User cannot be applied to given types;
+  required: java.lang.String,java.lang.String,java.lang.String,java.lang.String
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[73,92] incompatible types: java.util.List<com.vaccine.model.Vaccine> cannot be converted to java.util.List<com.vaccine.model.VaccineService>
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[91,81] cannot find symbol  symbol:   method getChildId()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[93,59] cannot find symbol  symbol:   method getVaccineServiceId()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[105,48] cannot find symbol
+  symbol:   method getAppointmentDate()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[106,48] cannot find symbol
+  symbol:   method getAppointmentTime()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[111,52] cannot find symbol
+  symbol:   method getNotes()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[119,86] cannot find symbol
+  symbol:   method getPaymentMethod()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[242,81] cannot find symbol
+  symbol:   method getChildId()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[244,59] cannot find symbol
+  symbol:   method getVaccineServiceId()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[256,48] cannot find symbol
+  symbol:   method getAppointmentDate()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[257,48] cannot find symbol
+  symbol:   method getAppointmentTime()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[262,52] cannot find symbol
+  symbol:   method getNotes()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[270,86] cannot find symbol
+  symbol:   method getPaymentMethod()
+  location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[181,35] cannot find symbol
+  symbol:   method getName()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[182,42] cannot find symbol
+  symbol:   method getDescription()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[183,43] cannot find symbol
+  symbol:   method getManufacturer()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[184,56] cannot find symbol
+  symbol:   method getRecommendedAgeMonthsStart()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[185,54] cannot find symbol
+  symbol:   method getRecommendedAgeMonthsEnd()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[186,41] cannot find symbol
+  symbol:   method getIsRequired()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[187,48] cannot find symbol
+  symbol:   method getPreventedDiseases()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[188,42] cannot find symbol
+  symbol:   method getSideEffects()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[189,36] cannot find symbol
+  symbol:   method getPrice()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[202,39] cannot find symbol
+  symbol:   method getName()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[203,46] cannot find symbol
+  symbol:   method getDescription()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[204,47] cannot find symbol
+  symbol:   method getManufacturer()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[205,60] cannot find symbol
+  symbol:   method getRecommendedAgeMonthsStart()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[206,58] cannot find symbol
+  symbol:   method getRecommendedAgeMonthsEnd()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[207,45] cannot find symbol
+  symbol:   method getIsRequired()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[208,52] cannot find symbol
+  symbol:   method getPreventedDiseases()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[209,46] cannot find symbol
+  symbol:   method getSideEffects()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[210,40] cannot find symbol
+  symbol:   method getPrice()
+  location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[71,25] cannot find symbol       
+  symbol:   variable ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[72,34] cannot find symbol       
+  symbol:   variable ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[88,20] cannot find symbol       
+  symbol:   variable ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[90,20] cannot find symbol       
+  symbol:   variable ResponseEntity
+  location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[40,36] constructor User in class com.vaccine.model.User cannot be applied to given types;
+  required: java.lang.String,java.lang.String,java.lang.String,java.lang.String
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[60,37] cannot find symbol
+  symbol:   method getUsername()
+  location: variable loginRequest of type @javax.validation.Valid com.vaccine.dto.LoginRequest
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[61,37] cannot find symbol       
+  symbol:   method getPassword()
+  location: variable loginRequest of type @javax.validation.Valid com.vaccine.dto.LoginRequest
+[INFO] 49 errors
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  43.715 s
+[INFO] Finished at: 2025-04-16T12:48:32+07:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.10.1:compile (default-compile) on project vaccine-management: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[25,13] reference to VaccineService is ambiguous
+[ERROR]   both class com.vaccine.model.VaccineService in com.vaccine.model and interface com.vaccine.service.VaccineService in com.vaccine.service match
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[7,1] a type with the same simple name is already defined by the single-type-import of com.vaccine.model.VaccineService
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[69,12] cannot find symbol       
+[ERROR]   symbol:   class ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[78,12] cannot find symbol       
+[ERROR]   symbol:   class ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[177,39] cannot find symbol
+[ERROR]   symbol:   method getFullName()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[178,42] cannot find symbol     
+[ERROR]   symbol:   method getDateOfBirth()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[179,37] cannot find symbol     
+[ERROR]   symbol:   method getGender()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[180,40] cannot find symbol     
+[ERROR]   symbol:   method getBloodType()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[181,40] cannot find symbol     
+[ERROR]   symbol:   method getAllergies()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/ChildController.java:[182,48] cannot find symbol     
+[ERROR]   symbol:   method getMedicalConditions()
+[ERROR]   location: variable childDTO of type com.vaccine.dto.ChildDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminUserController.java:[43,36] constructor User in class com.vaccine.model.User cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,java.lang.String,java.lang.String
+[ERROR]   found:    no arguments
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[73,92] incompatible types: java.util.List<com.vaccine.model.Vaccine> cannot be converted to java.util.List<com.vaccine.model.VaccineService>
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[91,81] cannot find symbol[ERROR]   symbol:   method getChildId()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[93,59] cannot find symbol[ERROR]   symbol:   method getVaccineServiceId()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[105,48] cannot find symbol
+[ERROR]   symbol:   method getAppointmentDate()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[106,48] cannot find symbol
+[ERROR]   symbol:   method getAppointmentTime()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[111,52] cannot find symbol
+[ERROR]   symbol:   method getNotes()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[119,86] cannot find symbol
+[ERROR]   symbol:   method getPaymentMethod()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[242,81] cannot find symbol
+[ERROR]   symbol:   method getChildId()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[244,59] cannot find symbol
+[ERROR]   symbol:   method getVaccineServiceId()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[256,48] cannot find symbol
+[ERROR]   symbol:   method getAppointmentDate()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[257,48] cannot find symbol
+[ERROR]   symbol:   method getAppointmentTime()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[262,52] cannot find symbol
+[ERROR]   symbol:   method getNotes()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AppointmentController.java:[270,86] cannot find symbol
+[ERROR]   symbol:   method getPaymentMethod()
+[ERROR]   location: variable appointmentDTO of type com.vaccine.dto.AppointmentDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[181,35] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[182,42] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[183,43] cannot find symbol
+[ERROR]   symbol:   method getManufacturer()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[184,56] cannot find symbol
+[ERROR]   symbol:   method getRecommendedAgeMonthsStart()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[185,54] cannot find symbol
+[ERROR]   symbol:   method getRecommendedAgeMonthsEnd()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[186,41] cannot find symbol
+[ERROR]   symbol:   method getIsRequired()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[187,48] cannot find symbol
+[ERROR]   symbol:   method getPreventedDiseases()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[188,42] cannot find symbol
+[ERROR]   symbol:   method getSideEffects()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[189,36] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[202,39] cannot find symbol
+[ERROR]   symbol:   method getName()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[203,46] cannot find symbol
+[ERROR]   symbol:   method getDescription()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[204,47] cannot find symbol
+[ERROR]   symbol:   method getManufacturer()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[205,60] cannot find symbol
+[ERROR]   symbol:   method getRecommendedAgeMonthsStart()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[206,58] cannot find symbol
+[ERROR]   symbol:   method getRecommendedAgeMonthsEnd()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[207,45] cannot find symbol
+[ERROR]   symbol:   method getIsRequired()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[208,52] cannot find symbol
+[ERROR]   symbol:   method getPreventedDiseases()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[209,46] cannot find symbol
+[ERROR]   symbol:   method getSideEffects()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/admin/AdminVaccineController.java:[210,40] cannot find symbol
+[ERROR]   symbol:   method getPrice()
+[ERROR]   location: variable vaccineDTO of type com.vaccine.dto.VaccineDTO
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[71,25] cannot find symbol       
+[ERROR]   symbol:   variable ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[72,34] cannot find symbol
+[ERROR]   symbol:   variable ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[88,20] cannot find symbol       
+[ERROR]   symbol:   variable ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/UserController.java:[90,20] cannot find symbol       
+[ERROR]   symbol:   variable ResponseEntity
+[ERROR]   location: class com.vaccine.controller.UserController
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[40,36] constructor User in class com.vaccine.model.User cannot be applied to given types;
+[ERROR]   required: java.lang.String,java.lang.String,java.lang.String,java.lang.String
+[ERROR]   found:    no arguments
+[ERROR]   reason: actual and formal argument lists differ in length
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[60,37] cannot find symbol       
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable loginRequest of type @javax.validation.Valid com.vaccine.dto.LoginRequest
+[ERROR] /C:/Users/Xuan Hai/IdeaProjects/QuickHealthTracker/src/main/java/com/vaccine/controller/AuthController.java:[61,37] cannot find symbol       
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable loginRequest of type @javax.validation.Valid com.vaccine.dto.LoginRequest
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

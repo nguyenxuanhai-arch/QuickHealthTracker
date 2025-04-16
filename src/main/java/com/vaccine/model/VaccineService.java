@@ -1,8 +1,6 @@
 package com.vaccine.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+// Lombok imports removed
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,9 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vaccine_services")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+// Lombok annotations removed
 public class VaccineService {
 
     @Id
@@ -59,6 +55,26 @@ public class VaccineService {
 
     public enum ServiceType {
         INDIVIDUAL, PACKAGE, CUSTOM
+    }
+    
+    // Constructors
+    public VaccineService() {
+        // Default constructor
+    }
+    
+    public VaccineService(Long id, String name, String description, ServiceType serviceType,
+                         Double price, Double discountPercentage, Set<Vaccine> vaccines,
+                         Set<Appointment> appointments, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.serviceType = serviceType;
+        this.price = price;
+        this.discountPercentage = discountPercentage;
+        this.vaccines = vaccines;
+        this.appointments = appointments;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     
     // Getters and Setters

@@ -1,8 +1,6 @@
 package com.vaccine.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+// Lombok imports removed
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,9 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reactions")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+// Lombok annotations removed
 public class Reaction {
 
     @Id
@@ -45,6 +41,26 @@ public class Reaction {
 
     public enum Severity {
         MILD, MODERATE, SEVERE
+    }
+    
+    // Constructors
+    public Reaction() {
+        // Default constructor
+    }
+    
+    public Reaction(Long id, VaccineSchedule vaccineSchedule, Severity severity, String symptoms, 
+                   String treatment, LocalDateTime onsetTime, LocalDateTime resolutionTime, 
+                   String notes, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.vaccineSchedule = vaccineSchedule;
+        this.severity = severity;
+        this.symptoms = symptoms;
+        this.treatment = treatment;
+        this.onsetTime = onsetTime;
+        this.resolutionTime = resolutionTime;
+        this.notes = notes;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     
     // Getters and Setters

@@ -1,8 +1,6 @@
 package com.vaccine.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+// Lombok imports removed
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,9 +14,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "vaccines")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+// Lombok annotations removed
 public class Vaccine {
 
     @Id
@@ -61,6 +57,33 @@ public class Vaccine {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+    
+    // Constructors
+    public Vaccine() {
+        // Default constructor
+    }
+    
+    public Vaccine(Long id, String name, String description, String manufacturer, 
+                  Integer recommendedAgeMonthsStart, Integer recommendedAgeMonthsEnd, 
+                  Boolean isRequired, String preventedDiseases, String sideEffects, 
+                  Double price, Set<VaccineService> vaccineServices, 
+                  Set<VaccineSchedule> vaccineSchedules, 
+                  LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.manufacturer = manufacturer;
+        this.recommendedAgeMonthsStart = recommendedAgeMonthsStart;
+        this.recommendedAgeMonthsEnd = recommendedAgeMonthsEnd;
+        this.isRequired = isRequired;
+        this.preventedDiseases = preventedDiseases;
+        this.sideEffects = sideEffects;
+        this.price = price;
+        this.vaccineServices = vaccineServices;
+        this.vaccineSchedules = vaccineSchedules;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
     
     // Getters and Setters
     public Long getId() {

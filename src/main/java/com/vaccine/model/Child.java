@@ -1,8 +1,6 @@
 package com.vaccine.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+// Lombok imports removed
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,9 +15,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "children")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+// Lombok annotations removed
 public class Child {
 
     @Id
@@ -60,6 +56,29 @@ public class Child {
 
     public enum Gender {
         MALE, FEMALE, OTHER
+    }
+    
+    // Constructors
+    public Child() {
+        // Default constructor
+    }
+    
+    public Child(Long id, String fullName, LocalDate dateOfBirth, Gender gender, String bloodType,
+                String allergies, String medicalConditions, User parent,
+                Set<VaccineSchedule> vaccineSchedules, Set<Appointment> appointments,
+                LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.id = id;
+        this.fullName = fullName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.bloodType = bloodType;
+        this.allergies = allergies;
+        this.medicalConditions = medicalConditions;
+        this.parent = parent;
+        this.vaccineSchedules = vaccineSchedules;
+        this.appointments = appointments;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
     
     // Getters and Setters
