@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Vaccination Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">Vaccination Manager</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/vaccines">Vaccines</a></li>
+                    <li><a href="/children">My Children</a></li>
+                    <li><a href="/appointments" class="active">Appointments</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin</a></li>
+                    <li>
+                        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
+                        <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Appointments</h1>
+        
+        <!-- Success messages -->
+        <div th:if="${param.scheduled}" class="alert alert-success">
+            Appointment scheduled successfully.
+        </div>
+        <div th:if="${param.cancelled}" class="alert alert-success">
+            Appointment cancelled successfully.
+        </div>
+        <div th:if="${param.completed}" class="alert alert-success">
+            Appointment marked as completed successfully.
+        </div>
+        
+        <!-- Appointment Actions -->
+        <div class="appointment-actions mb-2">
+            <a href="/appointments/schedule" class="btn btn-primary">Schedule New Appointment</a>
+            
+            <!-- Filters -->
+            <div class="appointment-filters">
+                <input type="text" id="appointmentSearch" placeholder="Search..." class="form-control">
+                
+                <select id="statusFilter" class="form-control">
+                    <option value="ALL">All Status</option>
+                    <option value="SCHEDULED">Scheduled</option>
+                    <option value="COMPLETED">Completed</option>
+                    <option value="CANCELLED">Cancelled</option>
+                    <option value="NO_SHOW">No Show</option>
+                </select>
+                
+                <select id="dateFilter" class="form-control">
+                    <option value="ALL">All Dates</option>
+                    <option value="TODAY">Today</option>
+                    <option value="TOMORROW">Tomorrow</option>
+                    <option value="THIS_WEEK">This Week</option>
+                    <option value="UPCOMING">Upcoming</option>
+                    <option value="PAST">Past</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Appointments List -->
+        <div class="appointments-container">
+            <!-- Empty state message -->
+            <div th:if="${appointments.empty}" class="alert alert-info">
+                <p>You have no appointments yet. Click the "Schedule New Appointment" button to get started.</p>
+            </div>
+            
+            <div id="noAppointmentsMessage" style="display: none;" class="alert alert-info">
+                <p>No appointments match your search criteria.</p>
+            </div>
+            
+            <!-- Appointments list -->
+            <div th:unless="${appointments.empty}">
+                <div th:each="appointment : ${appointments}" class="card mb-2 appointment-item"
+                     th:data-status="${appointment.status}"
+                     th:data-date="${appointment.appointmentDateTime}"
+                     th:data-child-name="${appointment.child.fullName}"
+                     th:data-service-name="${appointment.vaccineService.name}">
+                    <div class="card-header">
+                        <div class="appointment-header-content">
+                            <span th:text="${#temporals.format(appointment.appointmentDateTime, 'dd MMMM yyyy HH:mm')}">01 January 2023 10:00</span>
+                            <span th:class="'badge status-' + ${#strings.toLowerCase(appointment.status)}" th:text="${appointment.status}">SCHEDULED</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="appointment-details">
+                            <div class="appointment-info">
+                                <p><strong>Child:</strong> <span th:text="${appointment.child.fullName}">Child Name</span></p>
+                                <p><strong>Service:</strong> <span th:text="${appointment.vaccineService.name}">Vaccine Service</span></p>
+                                <p><strong>Location:</strong> Main Vaccination Center</p>
+                                <p th:if="${appointment.notes}"><strong>Notes:</strong> <span th:text="${appointment.notes}">Special notes</span></p>
+                            </div>
+                            
+                            <!-- Payment information -->
+                            <div class="payment-info" th:if="${appointment.payment != null}">
+                                <p><strong>Payment:</strong> <span th:text="${'$' + appointment.payment.amount}">$50.00</span></p>
+                                <p><strong>Status:</strong> <span th:text="${appointment.payment.status}">COMPLETED</span></p>
+                                <p><strong>Method:</strong> <span th:text="${appointment.payment.paymentMethod}">CREDIT_CARD</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a th:href="@{/appointments/{id}(id=${appointment.id})}" class="btn">View Details</a>
+                        
+                        <!-- Show cancel button for scheduled appointments -->
+                        <a th:if="${appointment.status == 'SCHEDULED'}" href="#" 
+                           th:data-appointment-id="${appointment.id}"
+                           class="btn btn-danger cancel-appointment">Cancel</a>
+                        
+                        <!-- Show complete button for staff and admin -->
+                        <a th:if="${appointment.status == 'SCHEDULED' && #authorization.expression('hasAnyRole(''STAFF'', ''ADMIN'')')}"
+                           href="#" 
+                           th:data-appointment-id="${appointment.id}"
+                           class="btn btn-success complete-appointment">Mark Completed</a>
+                        
+                        <!-- Show feedback button for completed appointments -->
+                        <a th:if="${appointment.status == 'COMPLETED'}" 
+                           th:href="@{/feedback/add(appointmentId=${appointment.id})}"
+                           class="btn">Leave Feedback</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vaccination Manager</h3>
+                    <p>Keeping your children healthy through proper vaccination tracking and scheduling.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/vaccines">Vaccines</a></li>
+                        <li><a href="/children">My Children</a></li>
+                        <li><a href="/appointments">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@vaccinationmanager.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vaccination Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/appointment.js}"></script>
+</body>
+</html>

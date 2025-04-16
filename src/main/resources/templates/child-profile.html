@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${child.fullName} + ' - Child Profile'">Child Profile - Vaccination Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">Vaccination Manager</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/vaccines">Vaccines</a></li>
+                    <li><a href="/children">My Children</a></li>
+                    <li><a href="/appointments">Appointments</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin</a></li>
+                    <li>
+                        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
+                        <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Success messages -->
+        <div th:if="${param.updated}" class="alert alert-success">
+            Child information updated successfully.
+        </div>
+        
+        <!-- Child Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <!-- Display first letter of child's name as avatar -->
+                <span th:text="${#strings.substring(child.fullName, 0, 1).toUpperCase()}">C</span>
+            </div>
+            <div class="profile-info">
+                <h2 th:text="${child.fullName}">Child Name</h2>
+                <p>
+                    <strong>Date of Birth:</strong> 
+                    <span th:text="${#temporals.format(child.dateOfBirth, 'dd MMMM yyyy')}">01 January 2020</span>
+                    (<span th:text="${#temporals.year(#temporals.createNow()) - #temporals.year(child.dateOfBirth)} + ' years old'">3 years old</span>)
+                </p>
+                <div class="profile-actions">
+                    <a th:href="@{/children/{id}/edit(id=${child.id})}" class="btn">Edit Profile</a>
+                    <a th:href="@{/children/{id}/vaccines(id=${child.id})}" class="btn">Vaccination History</a>
+                    <a th:href="@{/appointments/schedule}" class="btn btn-primary">Schedule Vaccination</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tabs Navigation -->
+        <div class="tabs mt-2">
+            <ul class="nav-tabs">
+                <li><a href="#overview" data-toggle="tab" class="active">Overview</a></li>
+                <li><a href="#vaccination-history" data-toggle="tab">Vaccination History</a></li>
+                <li><a href="#upcoming-vaccines" data-toggle="tab">Upcoming Vaccines</a></li>
+                <li><a href="#appointments" data-toggle="tab">Appointments</a></li>
+            </ul>
+        </div>
+        
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-pane">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">Personal Information</div>
+                            <div class="card-body">
+                                <p><strong>Full Name:</strong> <span th:text="${child.fullName}">Child Name</span></p>
+                                <p><strong>Date of Birth:</strong> <span th:text="${#temporals.format(child.dateOfBirth, 'dd MMMM yyyy')}">01 January 2020</span></p>
+                                <p><strong>Gender:</strong> <span th:text="${child.gender}">Male</span></p>
+                                <p><strong>Blood Type:</strong> <span th:text="${child.bloodType ?: 'Not provided'}">Not provided</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">Medical Information</div>
+                            <div class="card-body">
+                                <div th:if="${child.allergies}">
+                                    <p><strong>Allergies:</strong> <span th:text="${child.allergies}">Peanuts</span></p>
+                                </div>
+                                <div th:unless="${child.allergies}">
+                                    <p><strong>Allergies:</strong> No known allergies</p>
+                                </div>
+                                
+                                <div th:if="${child.medicalConditions}">
+                                    <p><strong>Medical Conditions:</strong> <span th:text="${child.medicalConditions}">Asthma</span></p>
+                                </div>
+                                <div th:unless="${child.medicalConditions}">
+                                    <p><strong>Medical Conditions:</strong> No known medical conditions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vaccination Summary -->
+                <div class="card mt-2">
+                    <div class="card-header">Vaccination Summary</div>
+                    <div class="card-body">
+                        <div th:if="${vaccineSchedules.empty}" class="alert alert-info">
+                            No vaccination records found for this child. Schedule a vaccination to get started.
+                        </div>
+                        
+                        <div th:unless="${vaccineSchedules.empty}">
+                            <div class="vaccination-summary">
+                                <div class="summary-item">
+                                    <div class="summary-number" th:text="${vaccineSchedules.size()}">10</div>
+                                    <div class="summary-label">Total Vaccines</div>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <div class="summary-number" th:text="${vaccineSchedules.?[status == 'COMPLETED'].size()}">5</div>
+                                    <div class="summary-label">Completed</div>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <div class="summary-number" th:text="${vaccineSchedules.?[status == 'SCHEDULED'].size()}">3</div>
+                                    <div class="summary-label">Scheduled</div>
+                                </div>
+                                
+                                <div class="summary-item">
+                                    <div class="summary-number" th:text="${vaccineSchedules.?[status == 'MISSED' || status == 'CANCELLED'].size()}">2</div>
+                                    <div class="summary-label">Missed/Cancelled</div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-2">
+                                <a th:href="@{/children/{id}/vaccines(id=${child.id})}" class="btn">View Full Vaccination History</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vaccination History Tab -->
+            <div id="vaccination-history" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="header-actions">
+                            <h3>Vaccination History</h3>
+                            <div class="actions">
+                                <input type="text" id="vaccineFilter" placeholder="Search vaccines..." class="form-control">
+                                <select id="statusFilter" class="form-control">
+                                    <option value="all">All Status</option>
+                                    <option value="COMPLETED">Completed</option>
+                                    <option value="SCHEDULED">Scheduled</option>
+                                    <option value="MISSED">Missed</option>
+                                    <option value="CANCELLED">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${vaccineSchedules.empty}" class="alert alert-info">
+                            No vaccination records found for this child. Schedule a vaccination to get started.
+                        </div>
+                        
+                        <div th:unless="${vaccineSchedules.empty}" class="table-responsive">
+                            <table id="vaccinationHistoryTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-sort="vaccine">Vaccine</th>
+                                        <th data-sort="date">Scheduled Date</th>
+                                        <th data-sort="administered">Administered Date</th>
+                                        <th data-sort="status">Status</th>
+                                        <th data-sort="dose">Dose</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="schedule : ${vaccineSchedules}" th:data-vaccine="${schedule.vaccine.name}" th:data-status="${schedule.status}">
+                                        <td th:text="${schedule.vaccine.name}" th:data-vaccine="${schedule.vaccine.name}">Polio</td>
+                                        <td th:text="${#temporals.format(schedule.scheduledDate, 'dd MMM yyyy')}" th:data-date="${schedule.scheduledDate}">01 Jan 2023</td>
+                                        <td th:text="${schedule.administeredDate != null ? #temporals.format(schedule.administeredDate, 'dd MMM yyyy') : 'N/A'}" th:data-administered="${schedule.administeredDate != null ? schedule.administeredDate : ''}">N/A</td>
+                                        <td th:data-status="${schedule.status}">
+                                            <span th:class="'badge status-' + ${#strings.toLowerCase(schedule.status)}" th:text="${schedule.status}">SCHEDULED</span>
+                                        </td>
+                                        <td th:text="${schedule.doseNumber ?: '1'}" th:data-dose="${schedule.doseNumber ?: '1'}">1</td>
+                                        <td>
+                                            <a th:if="${schedule.status == 'SCHEDULED'}" th:href="@{/appointments/schedule(vaccineScheduleId=${schedule.id})}" class="btn btn-sm">Schedule</a>
+                                            <a th:if="${schedule.status == 'COMPLETED' && schedule.reaction != null}" href="#" class="btn btn-sm">View Reaction</a>
+                                            <a th:if="${schedule.status == 'COMPLETED' && schedule.reaction == null}" href="#" class="btn btn-sm">Report Reaction</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Upcoming Vaccines Tab -->
+            <div id="upcoming-vaccines" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">Upcoming Vaccinations</div>
+                    <div class="card-body">
+                        <div th:if="${vaccineSchedules.?[status == 'SCHEDULED'].empty}" class="alert alert-info">
+                            No upcoming vaccinations scheduled for this child.
+                        </div>
+                        
+                        <div th:unless="${vaccineSchedules.?[status == 'SCHEDULED'].empty}" class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Vaccine</th>
+                                        <th>Scheduled Date</th>
+                                        <th>Days Until Due</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="schedule : ${vaccineSchedules}" th:if="${schedule.status == 'SCHEDULED'}">
+                                        <td th:text="${schedule.vaccine.name}">Polio</td>
+                                        <td th:text="${#temporals.format(schedule.scheduledDate, 'dd MMM yyyy')}">01 Jan 2023</td>
+                                        <td th:text="${#temporals.until(#temporals.createToday(), schedule.scheduledDate).get(#temporals.unit.DAYS) > 0 ? #temporals.until(#temporals.createToday(), schedule.scheduledDate).get(#temporals.unit.DAYS) : 'Overdue'}">30</td>
+                                        <td>
+                                            <a th:href="@{/appointments/schedule(vaccineScheduleId=${schedule.id})}" class="btn btn-sm btn-primary">Schedule</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="text-center mt-2">
+                            <a th:href="@{/appointments/schedule}" class="btn btn-primary">Schedule Vaccination</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Appointments Tab -->
+            <div id="appointments" class="tab-pane">
+                <div class="card">
+                    <div class="card-header">Appointments</div>
+                    <div class="card-body">
+                        <!-- This would be populated from a controller method that fetches appointments for this child -->
+                        <div class="alert alert-info">
+                            Appointments for this child would be displayed here.
+                        </div>
+                        
+                        <div class="text-center mt-2">
+                            <a th:href="@{/appointments/schedule}" class="btn btn-primary">Schedule New Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vaccination Manager</h3>
+                    <p>Keeping your children healthy through proper vaccination tracking and scheduling.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/vaccines">Vaccines</a></li>
+                        <li><a href="/children">My Children</a></li>
+                        <li><a href="/appointments">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@vaccinationmanager.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vaccination Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/child.js}"></script>
+</body>
+</html>

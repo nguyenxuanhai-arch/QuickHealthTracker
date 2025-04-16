@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Vaccination Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">Vaccination Manager</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/vaccines">Vaccines</a></li>
+                    <li><a href="/children">My Children</a></li>
+                    <li><a href="/appointments">Appointments</a></li>
+                    <li><a href="/profile" class="active">Profile</a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin</a></li>
+                    <li>
+                        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
+                        <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Success messages -->
+        <div th:if="${param.updated}" class="alert alert-success">
+            Your profile has been updated successfully.
+        </div>
+        
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <!-- Display first letter of user's name as avatar -->
+                <span th:text="${#strings.substring(user.fullName, 0, 1).toUpperCase()}">U</span>
+            </div>
+            <div class="profile-info">
+                <h2 th:text="${user.fullName}">User Name</h2>
+                <p th:text="${user.username}">username</p>
+                <p th:text="${user.email}">user@example.com</p>
+                <a href="/profile/edit" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+        
+        <!-- Profile Details -->
+        <div class="row mt-2">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Personal Information</div>
+                    <div class="card-body">
+                        <p><strong>Full Name:</strong> <span th:text="${user.fullName}">User Name</span></p>
+                        <p><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
+                        <p><strong>Phone:</strong> <span th:text="${user.phone ?: 'Not provided'}">Not provided</span></p>
+                        <p><strong>Address:</strong> <span th:text="${user.address ?: 'Not provided'}">Not provided</span></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">Account Information</div>
+                    <div class="card-body">
+                        <p><strong>Username:</strong> <span th:text="${user.username}">username</span></p>
+                        <p><strong>Role:</strong> 
+                            <span th:each="role : ${user.roles}" th:text="${#strings.replace(role.name, 'ROLE_', '')}">Customer</span>
+                        </p>
+                        <p><strong>Account Created:</strong> <span th:text="${#temporals.format(user.createdAt, 'dd MMMM yyyy')}">01 January 2023</span></p>
+                        <p><strong>Last Updated:</strong> <span th:text="${#temporals.format(user.updatedAt, 'dd MMMM yyyy')}">01 January 2023</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Children Summary -->
+        <div class="profile-section mt-2">
+            <h3>My Children</h3>
+            
+            <div th:if="${user.children.empty}" class="alert alert-info">
+                You haven't added any children yet. <a href="/children/add">Add a child</a> to start tracking their vaccination history.
+            </div>
+            
+            <div th:unless="${user.children.empty}" class="row">
+                <div th:each="child : ${user.children}" class="col-4">
+                    <div class="card">
+                        <div class="card-header" th:text="${child.fullName}">Child Name</div>
+                        <div class="card-body">
+                            <p><strong>Date of Birth:</strong> <span th:text="${#temporals.format(child.dateOfBirth, 'dd MMMM yyyy')}">01 January 2020</span></p>
+                            <p><strong>Gender:</strong> <span th:text="${child.gender}">Male</span></p>
+                            <p><strong>Blood Type:</strong> <span th:text="${child.bloodType ?: 'Not provided'}">Not provided</span></p>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{/children/{id}(id=${child.id})}" class="btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-2">
+                <a href="/children" class="btn">View All Children</a>
+                <a href="/children/add" class="btn btn-primary">Add New Child</a>
+            </div>
+        </div>
+        
+        <!-- Recent Appointments -->
+        <div class="profile-section mt-2">
+            <h3>Recent Appointments</h3>
+            
+            <div th:if="${user.children.empty}" class="alert alert-info">
+                Add a child to schedule vaccination appointments.
+            </div>
+            
+            <div th:unless="${user.children.empty}">
+                <!-- This would be populated from a controller method that fetches recent appointments -->
+                <div class="alert alert-info">
+                    Recent appointments would be displayed here. <a href="/appointments">View all appointments</a>.
+                </div>
+            </div>
+            
+            <div class="text-center mt-2">
+                <a href="/appointments" class="btn">View All Appointments</a>
+                <a href="/appointments/schedule" class="btn btn-primary">Schedule New Appointment</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vaccination Manager</h3>
+                    <p>Keeping your children healthy through proper vaccination tracking and scheduling.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/vaccines">Vaccines</a></li>
+                        <li><a href="/children">My Children</a></li>
+                        <li><a href="/appointments">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@vaccinationmanager.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vaccination Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

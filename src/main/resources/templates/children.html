@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Children - Vaccination Management System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">Vaccination Manager</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/vaccines">Vaccines</a></li>
+                    <li><a href="/children" class="active">My Children</a></li>
+                    <li><a href="/appointments">Appointments</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li sec:authorize="hasRole('ADMIN')"><a href="/admin/dashboard">Admin</a></li>
+                    <li>
+                        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
+                        <form id="logout-form" th:action="@{/logout}" method="post" style="display: none;"></form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>My Children</h1>
+        
+        <!-- Success messages -->
+        <div th:if="${param.added}" class="alert alert-success">
+            Child added successfully.
+        </div>
+        
+        <!-- Children List -->
+        <div class="children-container">
+            <div class="children-header mb-2">
+                <h2>Children List</h2>
+                <a href="/children/add" class="btn btn-primary">Add New Child</a>
+            </div>
+            
+            <!-- Empty state message -->
+            <div th:if="${children.empty}" class="alert alert-info">
+                <p>You haven't added any children yet. Click the "Add New Child" button to get started.</p>
+            </div>
+            
+            <!-- Children cards -->
+            <div th:unless="${children.empty}" class="row">
+                <div th:each="child : ${children}" class="col-4">
+                    <div class="card mb-2">
+                        <div class="card-header" th:text="${child.fullName}">Child Name</div>
+                        <div class="card-body">
+                            <p>
+                                <strong>Date of Birth:</strong> 
+                                <span th:text="${#temporals.format(child.dateOfBirth, 'dd MMMM yyyy')}">01 January 2020</span>
+                                <span class="badge badge-primary" th:text="${#temporals.year(#temporals.createNow()) - #temporals.year(child.dateOfBirth)} + ' years old'">3 years old</span>
+                            </p>
+                            <p><strong>Gender:</strong> <span th:text="${child.gender}">Male</span></p>
+                            <p><strong>Blood Type:</strong> <span th:text="${child.bloodType ?: 'Not provided'}">Not provided</span></p>
+                            
+                            <!-- Display allergies and medical conditions if they exist -->
+                            <div th:if="${child.allergies}" class="alert alert-warning">
+                                <strong>Allergies:</strong> <span th:text="${child.allergies}">Peanuts</span>
+                            </div>
+                            
+                            <div th:if="${child.medicalConditions}" class="alert alert-warning">
+                                <strong>Medical Conditions:</strong> <span th:text="${child.medicalConditions}">Asthma</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{/children/{id}(id=${child.id})}" class="btn">View Profile</a>
+                            <a th:href="@{/children/{id}/edit(id=${child.id})}" class="btn">Edit</a>
+                            <a th:href="@{/children/{id}/vaccines(id=${child.id})}" class="btn">Vaccination History</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Upcoming Vaccinations -->
+        <div th:unless="${children.empty}" class="upcoming-vaccinations mt-2">
+            <h2>Upcoming Vaccinations</h2>
+            
+            <!-- This section would be populated from a controller method that fetches upcoming vaccinations -->
+            <div class="alert alert-info">
+                Upcoming vaccinations for your children would be displayed here.
+            </div>
+            
+            <div class="text-center mt-2">
+                <a href="/appointments/schedule" class="btn btn-primary">Schedule Vaccination</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vaccination Manager</h3>
+                    <p>Keeping your children healthy through proper vaccination tracking and scheduling.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/vaccines">Vaccines</a></li>
+                        <li><a href="/children">My Children</a></li>
+                        <li><a href="/appointments">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@vaccinationmanager.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Vaccination Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/child.js}"></script>
+</body>
+</html>
